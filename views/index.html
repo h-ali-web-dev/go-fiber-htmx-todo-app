@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      src="https://unpkg.com/htmx.org@1.9.10"
+      integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <h1>{{.Title}}</h1>
+    <!-- <button hx-get="/todos" hx-trigger="load" hx-target="#todo-list">
+      Refresh
+    </button> -->
+
+    <form
+      method="post"
+      hx-post="/todos"
+      hx-target="#todo-list"
+      hx-swap="outerHTML"
+    >
+      <h4>New Todo:</h4>
+      <label for="Title">Title: </label>
+      <input type="text" id="Title" name="Title" required />
+      <br />
+      <label for="Completed">Completed: </label>
+      <input type="checkbox" id="Completed" name="Completed" />
+      <br />
+      <button type="submit">Submit</button>
+    </form>
+
+    <p
+      hx-get="/todos"
+      hx-trigger="load"
+      hx-target="#todo-list"
+      hx-swap="innerHTML"
+      id="todo-list"
+    ></p>
+  </body>
+</html>
